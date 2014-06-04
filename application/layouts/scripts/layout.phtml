@@ -1,0 +1,114 @@
+<head>
+    <meta name="keywords" content="" />
+    <meta name="description" content="" />
+    <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+
+    <link href="<?= $this->baseUrl() ?>/css/style.css" type="text/css">
+
+    <link href="<?= $this->baseUrl() ?>/css/bootstrap.min.css" rel="stylesheet">
+
+    <link href="<?= $this->baseUrl() ?>/style.css" rel="stylesheet" type="text/css" media="screen" />
+
+    <script type="text/javascript" src= "<?= $this->baseUrl() ?>/js/jquery.min.js"></script>
+    <script type="text/javascript" src="<?= $this->baseUrl() ?>/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="<?= $this->baseUrl() ?>/js/scripts.js" ></script>
+
+</head>
+
+<?php
+$user_data = Zend_Auth::getInstance()->getStorage()->read();
+?>
+
+<body>
+    <div id="wrapper">
+        <div id="header">
+            <div id="logo">
+                <img src="<?= $this->baseUrl() ?>/images/story1/HomeBackground.jpg" width="100px" height="100px">
+                
+            </div>
+        </div>
+        <!-- end #header -->
+        <div id="menu">
+            <ul>
+                <li class="current_page_item"><a href="<?= $this->baseUrl() ?>/user/">الرئيسية</a></li>
+                <?php
+                if (isset($user_data->id)) {
+                    if ($user_data->type == "parent") {
+                        ?>
+                        <li>
+                            <a href= "<?= $this->baseUrl() ?>/user/evaluatechild">قيم طفلك</a>
+                        </li>
+                        <li>
+                            <a href= "<?= $this->baseUrl() ?>/user/evaluatesite">قيم الموقع</a>
+                        </li>
+
+                        <?php
+                    }
+                 
+                    ?>
+                    <li>
+                        <a href= "<?= $this->baseUrl() ?>/user/logout">الخروج  </a>
+                    </li>
+
+                    <?php
+                    
+                } else {
+                    ?>
+
+                    <li>
+                        <a href="<?= $this->baseUrl() ?>/user/signup">التسجيل</a>
+                    </li>
+                    <li>
+                        <a href="<?= $this->baseUrl() ?>/user/login">الدخول</a>
+                    </li>
+                    <?php
+                }
+                ?>
+            </ul>
+        </div>
+
+
+        <!-- end #menu -->
+        <div id="page">
+            <div id="content">
+                <?php echo $this->layout()->content; ?>
+
+                <div style="clear: both;">&nbsp;</div>
+            </div>
+            <!-- end #content -->
+            <div id="sidebar" dir="rtl">
+                <ul style="width: 100px;">
+
+                    <li>
+                        <h2>التصنيفات</h2>
+                        <ul> 
+                            <li>
+                                <a href="<?= $this->baseUrl() ?>/user/liststories/cat_id/1">اسعافات اولية</a>
+                            </li>
+                            <li>
+                                <a href="<?= $this->baseUrl() ?>/user/liststories/cat_id/2">اخلاقنا</a>
+                            </li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+            <!-- end #sidebar -->
+            <div style="clear: both;">&nbsp;</div>
+        </div>
+        <!-- end #page -->
+    </div>
+    <div id="footer-content">
+        <div class="column1">
+        </div>
+            
+        <div class="column2">   
+        </div>
+    </div>
+    
+    <div id="footer">    
+    </div>
+    <!-- end #footer -->
+</body>
+
+
+
